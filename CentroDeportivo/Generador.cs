@@ -82,9 +82,10 @@ namespace CentroDeportivo
         public void generarInstalaciones()
         {
             id = 0;
+            id++;
             Random generator = new Random();
             double precio = generator.NextDouble();
-            Instalaciones.Add(new Instalacion(id++, precio));
+            Instalaciones.Add(new Instalacion(id, precio));
 
         }
     }

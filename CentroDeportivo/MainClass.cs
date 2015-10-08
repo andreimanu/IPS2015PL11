@@ -20,8 +20,9 @@ namespace CentroDeportivo
             gn = new Generador();
             gn.generar();
             Console.WriteLine("Socios:\n");
-            foreach(Socio sc in gn.Socios)
-                System.Console.WriteLine(sc);
+            var sc = gn.Socios;
+            for (int i = 0; i < gn.Socios.Count; i++ )
+                System.Console.WriteLine(gn.Socios.ToArray()[i]);
 
             Console.WriteLine("Instalaciones:\n");
             foreach (Instalacion ic in gn.Instalaciones)
