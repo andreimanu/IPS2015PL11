@@ -13,7 +13,8 @@ namespace CentroDeportivo
         public List<Actividad> Actividades { get; set; }
         public List<Alquiler> Alquileres { get; set; }
         public List<Instalacion> Instalaciones { get; set; }
-
+        private Random rangen;
+        public List<int> randomNum { get; set; }
         List<string> Nombres = new List<string>() { "Santiago", "Mateo", "Sebastian",
         "Alejandro", "Matias", "Diego", "Samuel", "Nicolas", "Daniel", "Martin", "Benjamin",
         "Emiliano", "Leonardo", "Joaquin", "Lucas", "Paloma", "Maria", "Segismunda", "Mercedes", "Sigisfrilda", "Ruka", "Laura", 
@@ -30,7 +31,8 @@ namespace CentroDeportivo
             Actividades = new List<Actividad>();
             Alquileres = new List<Alquiler>();
             Instalaciones = new List<Instalacion>();
-
+            randomNum = new List<int>();
+            rangen = new Random();
             for (int i = 0; i < 100; i++)
                 generarSocios();
 
@@ -39,39 +41,44 @@ namespace CentroDeportivo
 
             for (int i = 0; i < 12; i++)
                 generarInstalaciones();
+
+            for (int i = 0; i < 20; i++)
+                testRandom();
         }
 
+        public void testRandom()
+        {
+            Console.WriteLine(rangen.Next(50));
+        }
         public void generarSocios() {
-            Random generator = new Random();
-            int nombre = generator.Next(Nombres.Count-1);
-            int apellido1 = generator.Next(Apellidos.Count - 1);
-            int apellido2 = generator.Next(Apellidos.Count - 1);
+            int nombre = rangen.Next(Nombres.Count-1);
+            int apellido1 = rangen.Next(Apellidos.Count - 1);
+            int apellido2 = rangen.Next(Apellidos.Count - 1);
+
             StringBuilder Hanz = new StringBuilder();
             Hanz.Append("ES");
             for (int i = 0; i < 22; i++)
             {
-                Hanz.Append(generator.Next(9));
+                Hanz.Append(rangen.Next(9));
             }
+
             string NombreSocio = Nombres.ToArray()[nombre];
             StringBuilder Franz = new StringBuilder();
             Franz.Append(Apellidos.ToArray()[apellido1]);
             Franz.Append(" ");
             Franz.Append(Apellidos.ToArray()[apellido2]);
+
             Socios.Add(new Socio(NombreSocio, Franz.ToString(), Hanz.ToString(), 250, id++));
-            generator = null;
         }
 
         public void generarActividades()
         {
-            id = 0;
-
             DateTime start = new DateTime(1995, 1, 1);
-            Random gen = new Random();
             int range = (DateTime.Today - start).Days;
-            DateTime random = start.AddDays(gen.Next(range));
-            DateTime random2 = random.AddDays(gen.Next(25));
+            DateTime random = start.AddDays(rangen.Next(range));
+            DateTime random2 = random.AddDays(rangen.Next(25));
             DateTime duracion = random2.AddDays(90);
-            Actividades.Add(new Actividad(id++, random, random2, duracion, gen.NextDouble()));
+            Actividades.Add(new Actividad(id++, random, random2, duracion, rangen.NextDouble()));
         }
 
         public void generarAlquileres()
@@ -81,10 +88,8 @@ namespace CentroDeportivo
 
         public void generarInstalaciones()
         {
-            id = 0;
             id++;
-            Random generator = new Random();
-            double precio = generator.NextDouble();
+            double precio = rangen.NextDouble();
             Instalaciones.Add(new Instalacion(id, precio));
 
         }
