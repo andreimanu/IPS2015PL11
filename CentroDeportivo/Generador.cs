@@ -42,8 +42,6 @@ namespace CentroDeportivo
             for (int i = 0; i < 12; i++)
                 generarInstalaciones();
 
-            for (int i = 0; i < 20; i++)
-                testRandom();
         }
 
         public void testRandom()
