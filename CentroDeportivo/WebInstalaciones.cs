@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace CentroDeportivo
 {
-    public partial class Web : Form
+    public partial class WebInstalaciones : Form
     {
-        public Web()
+        public WebInstalaciones()
         {
             InitializeComponent();
-        }
-
-        private void labelDireccionWeb_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

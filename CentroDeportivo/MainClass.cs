@@ -44,6 +44,7 @@ namespace CentroDeportivo
                 System.Console.WriteLine(soc);
 
 
+
         }
     }
 }
