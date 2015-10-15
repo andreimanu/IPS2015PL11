@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CentroDeportivo
 {
-    class Actividad
+    public class Actividad
     {
         int ID { get; set; }
         DateTime fechaInscripcionClientes { get; set; }

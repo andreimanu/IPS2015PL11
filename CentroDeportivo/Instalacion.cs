@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace CentroDeportivo
 {
-    class Instalacion
+    public class Instalacion
     {
         int IDInstalacion { get; set; }
         double Precio { get; set; }
 
-        Alquiler Reservado;
+        public HashSet<Alquiler> Reservado;
 
-        bool Disponible { get; set; }
+        public bool Disponible { get; set; }
 
         public Instalacion(int IDInstalacion, double Precio)
         {
             this.IDInstalacion = IDInstalacion;
             this.Precio = Precio;
+            Reservado = new HashSet<Alquiler>();
         }
 
         public void Reservar(Alquiler al)
         {
-            Reservado = al;
-            Reservado.InstalacionReservada = this;
+            Reservado.Add(al);
         }
         public override string ToString() {
             return "IDInstalacion:\t" + IDInstalacion + "\nPrecio:\t" + Precio;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CentroDeportivo
 {
-    class Socio
+    public class Socio
     {
         string Nombre { get; set; }
         string Apellidos { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CentroDeportivo
 {
-    class Generador
+    public class Generador
     {
         int id = 0;
         public List<Socio> Socios { get; set; }
