@@ -56,7 +56,25 @@ namespace CentroDeportivo
             return db.Instalaciones;
         }
 
-        
+        private void Populate(string selectComm)
+        {
+            DataTable table = new DataTable();
+            table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            
+        }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            UpdateUsers();
+        }
+
+
+        internal void UpdateUsers()
+        {
+            Socio test1 = new Socio("Andrei", "Manu", "ES0022558812121349294012", 120, 1);
+            db.Socios.Add(test1);
+            this.dataGridView1.DataSource = db.Socios.ToArray<Socio>().ToString();
+            Console.WriteLine(this.dataGridView1.DataSource.ToString());
+        }
     }
 }
