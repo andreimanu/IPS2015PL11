@@ -19,65 +19,108 @@ namespace CentroDeportivo
         {
             InitializeComponent();
             this.db = db;
-            db.Alquileres.Add(new Alquiler(new DateTime(2015,10,20),0.58,0,129,0,9,10));
+            Alquiler al = new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, 125, 0, new DateTime(2015, 10, 20, 11, 0, 0), new DateTime(2015, 10, 20, 12, 0, 0), true);
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, 129, 0, new DateTime(2015,10,20,9,0,0) , new DateTime(2015, 10, 20, 10,0,0),false));
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 20), 0.58, 1, 128, 0, new DateTime(2015, 10, 20, 11, 0, 0), new DateTime(2015, 10, 20, 12, 0, 0),false));
+            db.Alquileres.Add(al);
             rellenarListaInstalaciones();
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ListView.SelectedListViewItemCollection instalacion =
-                this.listView1.SelectedItems;
-
-            foreach (ListViewItem item in instalacion)
-            {
-                
-            }
         }
 
         private void rellenarListaInstalaciones()
         {
             foreach (Instalacion i in db.Instalaciones)
             {
-
-                ListViewItem lvi = new ListViewItem(Convert.ToString(i.IDInstalacion));
-                lvi.SubItems.Add(Convert.ToString(i.Precio));
-
-                listView1.Items.Add(lvi);
-            }
-        }
-
-        private void rellenarListaAlquileres()
-        {
-            foreach (Instalacion i in db.Instalaciones)
-            {
-
-                ListViewItem lvi = new ListViewItem(Convert.ToString(i.IDInstalacion));
-                lvi.SubItems.Add(Convert.ToString(i.Precio));
-
-                listView1.Items.Add(lvi);
+                listBox2.Items.Add(i);
             }
         }
 
 
         private void lswProductos_MouseClick(object sender, MouseEventArgs e)
         {
-            ListViewItem item = listView1.GetItemAt(e.X, e.Y);
+            Instalacion item = (Instalacion)listBox2.SelectedItem;
 
             if (item != null)
             {
+                limpiarLista();
                 DateTime fecha = monthCalendar1.SelectionRange.Start;
                 foreach (Alquiler al in db.Alquileres)
                 {
-                    if (al.FechaAlquiler.CompareTo(fecha) == 0 && Convert.ToString(al.ID) == item.Text)
+                    if (al.FechaAlquiler.CompareTo(fecha) == 0 && al.ID == item.IDInstalacion && al.IDSocio != 0)
                     {
 
-                        String línea = al.horaAlquiladaInicio + ":00           OCUPADO";
-                        listBox1.Items.RemoveAt(al.horaAlquiladaInicio - 8);
-                        listBox1.Items.Insert((al.horaAlquiladaInicio - 8), línea);
+                        listBox1.Items.RemoveAt(al.horaAlquiladaInicio.Hour - 8);
+                        listBox1.Items.Insert((al.horaAlquiladaInicio.Hour - 8), al);
+                        if (al.horaAlquiladaFin.Hour - al.horaAlquiladaInicio.Hour > 1)
+                        {
+                            listBox1.Items.RemoveAt(al.horaAlquiladaFin.Hour - 8);
+                            listBox1.Items.Insert((al.horaAlquiladaFin.Hour - 8), al);
+                            listBox1.ForeColor = Color.FromArgb(100, 44, 55);
+                        }
+                    }
+                    else if (al.noDisponible == true && al.ID == item.IDInstalacion)
+                    {
+                        listBox1.Items.RemoveAt(al.horaAlquiladaInicio.Hour - 8);
+                        listBox1.Items.Insert((al.horaAlquiladaInicio.Hour - 8), al);
+                        if (al.horaAlquiladaFin.Hour - al.horaAlquiladaInicio.Hour > 1)
+                        {
+                            listBox1.Items.RemoveAt(al.horaAlquiladaFin.Hour - 8);
+                            listBox1.Items.Insert((al.horaAlquiladaFin.Hour - 8), al);
+                        }
                     }
                 }
             }
         }
 
+        private void limpiarLista()
+        {
+            Object[] alquileres = new Object[14];
+            int hora1 = 8;
+            int hora2 = 9;
+            int ID = 0;
+            Instalacion instalacion = (Instalacion)listBox2.SelectedItem;
+            if(instalacion != null)
+            {
+                ID = instalacion.IDInstalacion;
+
+            }
+
+            for(int i = 0; i < 14; i++)
+            {
+                alquileres[i] = (new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, instalacion.IDInstalacion, 0, new DateTime(2015, 10, 20, hora1, 0, 0), new DateTime(2015, 10, 20, hora2, 0, 0), false));
+                hora1++;
+                hora2++;
+            }
+            listBox1.Items.Clear();
+            listBox1.Items.AddRange(alquileres);
+        }
+
+        private void button_MouseClick(object sender, MouseEventArgs e)
+        {
+            var lista = listBox1.SelectedItems;
+            if (lista.Count <= 2 && lista.Count > 0)
+            {
+                foreach(Alquiler i in lista)
+                 {
+                    if (i.tp == Alquiler.tipos.OCUPADO)
+                    {
+                        MessageBox.Show("No se puede alquilar. Ya está reservado por otro usuario");
+                    }
+                    else
+                    {
+                        i.IDSocio = 1;
+                        i.actualizar();
+                        db.Alquileres.Add(i);
+                    }
+                 }
+
+            }
+            else
+            {
+                if (lista.Count > 2)
+                {
+                    MessageBox.Show("No se pueden alquilar más de dos horas seguidas. Lo sentimos.");
+                }
+            }
+        }
     }
 }

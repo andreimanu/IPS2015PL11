@@ -27,7 +27,7 @@ namespace CentroDeportivo
             Reservado.Add(al);
         }
         public override string ToString() {
-            return "IDInstalacion:\t" + IDInstalacion + "\nPrecio:\t" + Precio;
+            return "IDInstalacion:\t" + IDInstalacion + " \nPrecio:\t" + Precio;
         }
     }
 }
