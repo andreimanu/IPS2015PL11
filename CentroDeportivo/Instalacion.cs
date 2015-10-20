@@ -8,8 +8,8 @@ namespace CentroDeportivo
 {
     public class Instalacion
     {
-        int IDInstalacion { get; set; }
-        double Precio { get; set; }
+        internal int IDInstalacion { get; set; }
+        internal double Precio { get; set; }
 
         public HashSet<Alquiler> Reservado;
 

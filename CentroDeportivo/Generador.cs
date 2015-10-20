@@ -9,10 +9,10 @@ namespace CentroDeportivo
     public class Generador
     {
         int id = 0;
-        public List<Socio> Socios { get; set; }
-        public List<Actividad> Actividades { get; set; }
-        public List<Alquiler> Alquileres { get; set; }
-        public List<Instalacion> Instalaciones { get; set; }
+        public HashSet<Socio> Socios { get; set; }
+        public HashSet<Actividad> Actividades { get; set; }
+        public HashSet<Alquiler> Alquileres { get; set; }
+        public HashSet<Instalacion> Instalaciones { get; set; }
         private Random rangen;
         public List<int> randomNum { get; set; }
         List<string> Nombres = new List<string>() { "Santiago", "Mateo", "Sebastian",
@@ -27,10 +27,10 @@ namespace CentroDeportivo
 
         public void generar()
         {
-            Socios = new List<Socio>();
-            Actividades = new List<Actividad>();
-            Alquileres = new List<Alquiler>();
-            Instalaciones = new List<Instalacion>();
+            Socios = new HashSet<Socio>();
+            Actividades = new HashSet<Actividad>();
+            Alquileres = new HashSet<Alquiler>();
+            Instalaciones = new HashSet<Instalacion>();
             randomNum = new List<int>();
             rangen = new Random();
             for (int i = 0; i < 100; i++)
