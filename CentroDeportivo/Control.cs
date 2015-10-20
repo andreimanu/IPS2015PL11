@@ -16,6 +16,7 @@ namespace CentroDeportivo
         public Control()
         {
             InitializeComponent();
+            UpdateUsers();
         }
 
         public bool SignUp(Socio soc) {
@@ -73,8 +74,10 @@ namespace CentroDeportivo
         {
             Socio test1 = new Socio("Andrei", "Manu", "ES0022558812121349294012", 120, 1);
             db.Socios.Add(test1);
-            this.dataGridView1.DataSource = db.Socios.ToArray<Socio>().ToString();
-            Console.WriteLine(this.dataGridView1.DataSource.ToString());
+            foreach(Socio s in db.Socios)
+            {
+                listBox1.Items.Add(s);
+            }
         }
     }
 }

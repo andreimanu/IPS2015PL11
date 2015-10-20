@@ -1,4 +1,4 @@
-﻿using CentroDeportivo.InterfazWeb;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,15 +38,11 @@ namespace CentroDeportivo
             cs.ShowDialog();
             cs.SignUp(test1);
             cs.UpdateUsers();
-
-            MainWeb mw = new MainWeb();
-            mw.InicioWeb();
+            
 
             foreach(Socio soc in cs.db.Socios)
                 System.Console.WriteLine(soc);
-
-
-
+            
         }
     }
 }

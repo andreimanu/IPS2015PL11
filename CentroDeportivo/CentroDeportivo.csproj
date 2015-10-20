@@ -67,30 +67,11 @@
       <DependentUpon>Control.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
-    <Compile Include="InterfazWeb\MainWeb.cs" />
-    <Compile Include="InterfazWeb\WebInicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InterfazWeb\WebInicio.Designer.cs">
-      <DependentUpon>WebInicio.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainClass.cs" />
     <Compile Include="Generador.cs" />
     <Compile Include="Instalacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Socio.cs" />
-    <Compile Include="InterfazWeb\WebIniciado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InterfazWeb\WebIniciado.Designer.cs">
-      <DependentUpon>WebIniciado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="InterfazWeb\WebInstalaciones.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InterfazWeb\WebInstalaciones.Designer.cs">
-      <DependentUpon>WebInstalaciones.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -119,15 +100,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Control.resx">
       <DependentUpon>Control.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InterfazWeb\WebIniciado.resx">
-      <DependentUpon>WebIniciado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InterfazWeb\WebInicio.resx">
-      <DependentUpon>WebInicio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InterfazWeb\WebInstalaciones.resx">
-      <DependentUpon>WebInstalaciones.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
