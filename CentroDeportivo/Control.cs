@@ -72,12 +72,29 @@ namespace CentroDeportivo
 
         internal void UpdateUsers()
         {
-            Socio test1 = new Socio("Andrei", "Manu", "ES0022558812121349294012", 120, 1);
-            db.Socios.Add(test1);
             foreach(Socio s in db.Socios)
             {
                 listBox1.Items.Add(s);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Alta alta = new Alta(db, this);
+            alta.ShowDialog();
+        }
+
+        public void RefreshUsers()
+        {
+            listBox1.Items.Clear();
+            UpdateUsers();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Socio sc = listBox1.SelectedItem as Socio;
+            Remove(sc);
+            RefreshUsers();
         }
     }
 }
