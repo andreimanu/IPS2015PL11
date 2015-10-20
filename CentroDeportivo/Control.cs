@@ -31,7 +31,7 @@ namespace CentroDeportivo
             bool InstalacionDisponible = true;
             foreach (Alquiler a in db.Alquileres)
             {
-                if ((a.FechaAlquiler > al.FechaAlquiler) && (a.FechaVencimiento <= al.FechaVencimiento))
+                if ((a.horaAlquiladaInicio > al.horaAlquiladaInicio) && (a.horaAlquiladaFin <= al.horaAlquiladaFin))
                     InstalacionDisponible = false;
             }
             if ((al.InstalacionReservada == null) && InstalacionDisponible)
