@@ -16,7 +16,11 @@ namespace CentroDeportivo
         public Control()
         {
             InitializeComponent();
+            db.Socios = MainClass.gn.Socios;
+            db.Instalaciones = MainClass.gn.Instalaciones;
             UpdateUsers();
+            UpdateAlquileres();
+            UpdateInstalaciones();
         }
 
         public bool SignUp(Socio soc) {
@@ -78,6 +82,18 @@ namespace CentroDeportivo
             }
         }
 
+        internal void UpdateAlquileres()
+        {
+            foreach (Alquiler a in db.Alquileres)
+                listBox2.Items.Add(a);
+        }
+
+        internal void UpdateInstalaciones()
+        {
+            foreach (Instalacion i in db.Instalaciones)
+                listBox3.Items.Add(i);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Alta alta = new Alta(db, this);
@@ -95,6 +111,31 @@ namespace CentroDeportivo
             Socio sc = listBox1.SelectedItem as Socio;
             Remove(sc);
             RefreshUsers();
+        }
+
+        public void RefreshInstalaciones()
+        {
+            listBox3.Items.Clear();
+            UpdateInstalaciones();
+        }
+
+        public void RefreshAlquileres()
+        {
+            listBox2.Items.Clear();
+            UpdateAlquileres();
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            NuevoAlquiler na = new NuevoAlquiler(db, listBox3.SelectedItem as Instalacion, this);
+            na.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+           Alquiler al = listBox2.SelectedItem as Alquiler;
+            db.Alquileres.Remove(al);
+            al.InstalacionReservada.Liberar(al);
+            RefreshAlquileres();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace CentroDeportivo
 
         public metodosPago mp;
         public tipos tp;
-        internal Instalacion InstalacionReservada;
+        public Instalacion InstalacionReservada;
        
 
         public Alquiler(DateTime FechaAlquiler, double Precio, int IDSocio, int ID, metodosPago mp,DateTime horaAlquiladaInicio, DateTime horaAlquiladaFin, bool nd)

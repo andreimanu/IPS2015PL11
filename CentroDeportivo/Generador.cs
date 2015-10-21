@@ -66,7 +66,7 @@ namespace CentroDeportivo
             Franz.Append(" ");
             Franz.Append(Apellidos.ToArray()[apellido2]);
 
-            Socios.Add(new Socio(NombreSocio, Franz.ToString(), Hanz.ToString(), 250, id++));
+            Socios.Add(new Socio(NombreSocio, Franz.ToString(), Hanz.ToString(), 250, this.Socios.Count+1));
         }
 
         public void generarActividades()
@@ -88,7 +88,7 @@ namespace CentroDeportivo
         {
             id++;
             double precio = rangen.NextDouble();
-            Instalaciones.Add(new Instalacion(id, precio));
+            Instalaciones.Add(new Instalacion(this.Instalaciones.Count+1, precio));
 
         }
     }

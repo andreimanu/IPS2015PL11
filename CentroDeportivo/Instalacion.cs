@@ -20,14 +20,24 @@ namespace CentroDeportivo
             this.IDInstalacion = IDInstalacion;
             this.Precio = Precio;
             Reservado = new HashSet<Alquiler>();
+            this.Disponible = true;
         }
 
         public void Reservar(Alquiler al)
         {
             Reservado.Add(al);
+            Disponible = false;
+            al.InstalacionReservada = this;
+        }
+
+        public void Liberar(Alquiler al)
+        {
+            Reservado.Remove(al);
+            al.InstalacionReservada = null;
+            Disponible = true;
         }
         public override string ToString() {
-            return "IDInstalacion:\t" + IDInstalacion + " \nPrecio:\t" + Precio;
+            return "IDInstalacion:\t" + IDInstalacion + " \nPrecio:\t" + Precio + (Disponible ? "Disponible" : "Alquilado");
         }
     }
 }
