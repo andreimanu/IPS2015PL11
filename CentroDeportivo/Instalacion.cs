@@ -37,7 +37,7 @@ namespace CentroDeportivo
             Disponible = true;
         }
         public override string ToString() {
-            return "IDInstalacion:\t" + IDInstalacion + " \nPrecio:\t" + Precio + (Disponible ? "Disponible" : "Alquilado");
+            return "IDInstalacion:\t" + IDInstalacion + " \nPrecio:\t" + Precio + (Disponible ? " Disponible" : "Alquilado");
         }
     }
 }

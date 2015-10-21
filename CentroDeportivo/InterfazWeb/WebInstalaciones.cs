@@ -19,9 +19,9 @@ namespace CentroDeportivo
         {
             InitializeComponent();
             this.db = db;
-            Alquiler al = new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, 125, 0, new DateTime(2015, 10, 20, 11, 0, 0), new DateTime(2015, 10, 20, 12, 0, 0), true);
-            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, 129, 0, new DateTime(2015,10,20,9,0,0) , new DateTime(2015, 10, 20, 10,0,0),false));
-            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 20), 0.58, 1, 128, 0, new DateTime(2015, 10, 20, 11, 0, 0), new DateTime(2015, 10, 20, 12, 0, 0),false));
+            Alquiler al = new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, 5, 0, new DateTime(2015, 10, 20, 11, 0, 0), new DateTime(2015, 10, 20, 12, 0, 0), true);
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, 9, 0, new DateTime(2015,10,20,9,0,0) , new DateTime(2015, 10, 20, 10,0,0),false));
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 20), 0.58, 1, 8, 0, new DateTime(2015, 10, 20, 11, 0, 0), new DateTime(2015, 10, 20, 12, 0, 0),false));
             db.Alquileres.Add(al);
             rellenarListaInstalaciones();
         }
@@ -86,7 +86,7 @@ namespace CentroDeportivo
 
             for(int i = 0; i < 14; i++)
             {
-                alquileres[i] = (new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, instalacion.IDInstalacion, 0, new DateTime(2015, 10, 20, hora1, 0, 0), new DateTime(2015, 10, 20, hora2, 0, 0), false));
+                alquileres[i] = (new Alquiler(new DateTime(2015, 10, monthCalendar1.SelectionRange.Start.Day), 0.58, 0, instalacion.IDInstalacion, 0, new DateTime(2015, 10, monthCalendar1.SelectionRange.Start.Day, hora1, 0, 0), new DateTime(2015, 10, monthCalendar1.SelectionRange.Start.Day, hora2, 0, 0), false));
                 hora1++;
                 hora2++;
             }
@@ -107,7 +107,7 @@ namespace CentroDeportivo
                     }
                     else
                     {
-                        i.IDSocio = 1;
+                        i.IDSocio = 2;
                         i.actualizar();
                         db.Alquileres.Add(i);
                     }

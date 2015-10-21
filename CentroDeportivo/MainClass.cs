@@ -1,4 +1,5 @@
 ﻿
+using CentroDeportivo.InterfazWeb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,9 @@ namespace CentroDeportivo
             Control cs = new Control();
             cs.ShowDialog();
             cs.UpdateUsers();
+
+            MainWeb mw = new MainWeb();
+            mw.InicioWeb();
             
             
         }
