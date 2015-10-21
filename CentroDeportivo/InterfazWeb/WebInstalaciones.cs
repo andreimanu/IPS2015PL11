@@ -19,10 +19,18 @@ namespace CentroDeportivo
         {
             InitializeComponent();
             this.db = db;
-            Alquiler al = new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, 5, 0, new DateTime(2015, 10, 20, 11, 0, 0), new DateTime(2015, 10, 20, 12, 0, 0), true);
-            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 20), 0.58, 0, 9, 0, new DateTime(2015,10,20,9,0,0) , new DateTime(2015, 10, 20, 10,0,0),false));
-            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 20), 0.58, 1, 8, 0, new DateTime(2015, 10, 20, 11, 0, 0), new DateTime(2015, 10, 20, 12, 0, 0),false));
+            Alquiler al = new Alquiler(new DateTime(2015, 10, 21), 0.58, 0, 5, 0, new DateTime(2015, 10, 21, 11, 0, 0), new DateTime(2015, 10, 21, 12, 0, 0), true);
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 21), 0.58, 0, 9, 0, new DateTime(2015,10,21,9,0,0) , new DateTime(2015, 10, 21, 10,0,0),false));
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 21), 0.58, 1, 8, 0, new DateTime(2015, 10, 21, 11, 0, 0), new DateTime(2015, 10, 21, 12, 0, 0),false));
+            Alquiler al2 = new Alquiler(new DateTime(2015, 10, 22), 0.58, 0, 5, 0, new DateTime(2015, 10, 22, 11, 0, 0), new DateTime(2015, 10, 22, 12, 0, 0), true);
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 22), 0.58, 0, 9, 0, new DateTime(2015, 10, 22, 9, 0, 0), new DateTime(2015, 10, 22, 10, 0, 0), false));
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 22), 0.58, 1, 8, 0, new DateTime(2015, 10, 22, 11, 0, 0), new DateTime(2015, 10, 22, 12, 0, 0), false));
+            Alquiler al3 = new Alquiler(new DateTime(2015, 10, 23), 0.58, 0, 5, 0, new DateTime(2015, 10, 23, 11, 0, 0), new DateTime(2015, 10, 23, 12, 0, 0), true);
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 23), 0.58, 0, 9, 0, new DateTime(2015, 10, 23, 9, 0, 0), new DateTime(2015, 10, 23, 10, 0, 0), false));
+            db.Alquileres.Add(new Alquiler(new DateTime(2015, 10, 23), 0.58, 1, 8, 0, new DateTime(2015, 10, 23, 11, 0, 0), new DateTime(2015, 10, 23, 12, 0, 0), false));
             db.Alquileres.Add(al);
+            db.Alquileres.Add(al2);
+            db.Alquileres.Add(al3);
             rellenarListaInstalaciones();
         }
 
@@ -41,31 +49,36 @@ namespace CentroDeportivo
 
             if (item != null)
             {
-                limpiarLista();
-                DateTime fecha = monthCalendar1.SelectionRange.Start;
-                foreach (Alquiler al in db.Alquileres)
-                {
-                    if (al.FechaAlquiler.CompareTo(fecha) == 0 && al.ID == item.IDInstalacion && al.IDSocio != 0)
-                    {
+                actualizarListaAlquileres(item);
+            }
+        }
 
-                        listBox1.Items.RemoveAt(al.horaAlquiladaInicio.Hour - 8);
-                        listBox1.Items.Insert((al.horaAlquiladaInicio.Hour - 8), al);
-                        if (al.horaAlquiladaFin.Hour - al.horaAlquiladaInicio.Hour > 1)
-                        {
-                            listBox1.Items.RemoveAt(al.horaAlquiladaFin.Hour - 8);
-                            listBox1.Items.Insert((al.horaAlquiladaFin.Hour - 8), al);
-                            listBox1.ForeColor = Color.FromArgb(100, 44, 55);
-                        }
-                    }
-                    else if (al.noDisponible == true && al.ID == item.IDInstalacion)
+        private void actualizarListaAlquileres(Instalacion item)
+        {
+            limpiarLista();
+            DateTime fecha = monthCalendar1.SelectionRange.Start;
+            foreach (Alquiler al in db.Alquileres)
+            {
+                if (al.FechaAlquiler.CompareTo(fecha) == 0 && al.ID == item.IDInstalacion && al.IDSocio != 0)
+                {
+
+                    listBox1.Items.RemoveAt(al.horaAlquiladaInicio.Hour - 8);
+                    listBox1.Items.Insert((al.horaAlquiladaInicio.Hour - 8), al);
+                    if (al.horaAlquiladaFin.Hour - al.horaAlquiladaInicio.Hour > 1)
                     {
-                        listBox1.Items.RemoveAt(al.horaAlquiladaInicio.Hour - 8);
-                        listBox1.Items.Insert((al.horaAlquiladaInicio.Hour - 8), al);
-                        if (al.horaAlquiladaFin.Hour - al.horaAlquiladaInicio.Hour > 1)
-                        {
-                            listBox1.Items.RemoveAt(al.horaAlquiladaFin.Hour - 8);
-                            listBox1.Items.Insert((al.horaAlquiladaFin.Hour - 8), al);
-                        }
+                        listBox1.Items.RemoveAt(al.horaAlquiladaFin.Hour - 8);
+                        listBox1.Items.Insert((al.horaAlquiladaFin.Hour - 8), al);
+                        listBox1.ForeColor = Color.FromArgb(100, 44, 55);
+                    }
+                }
+                else if (al.noDisponible == true && al.ID == item.IDInstalacion)
+                {
+                    listBox1.Items.RemoveAt(al.horaAlquiladaInicio.Hour - 8);
+                    listBox1.Items.Insert((al.horaAlquiladaInicio.Hour - 8), al);
+                    if (al.horaAlquiladaFin.Hour - al.horaAlquiladaInicio.Hour > 1)
+                    {
+                        listBox1.Items.RemoveAt(al.horaAlquiladaFin.Hour - 8);
+                        listBox1.Items.Insert((al.horaAlquiladaFin.Hour - 8), al);
                     }
                 }
             }
@@ -110,6 +123,20 @@ namespace CentroDeportivo
                         i.IDSocio = 2;
                         i.actualizar();
                         db.Alquileres.Add(i);
+                        var result = MessageBox.Show("¿Quiere realizar el pago haciendo un cargo a su cuenta?", "",
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Question);
+                        if(result == DialogResult.No)
+                        {
+                            i.mp = Alquiler.metodosPago.METALICO;
+                        }
+                        else
+                        {
+                            i.mp = Alquiler.metodosPago.TARJETA;
+                        }
+                        MessageBox.Show("la instalación ha sido alquilada satisfactoriamente");
+
+
                     }
                  }
 
@@ -121,6 +148,7 @@ namespace CentroDeportivo
                     MessageBox.Show("No se pueden alquilar más de dos horas seguidas. Lo sentimos.");
                 }
             }
+            actualizarListaAlquileres((Instalacion)listBox2.SelectedItem);
         }
     }
 }
