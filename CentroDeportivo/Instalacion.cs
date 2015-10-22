@@ -15,6 +15,7 @@ namespace CentroDeportivo
 
         public bool Disponible { get; set; }
 
+       
         public Instalacion(int IDInstalacion, double Precio)
         {
             this.IDInstalacion = IDInstalacion;
