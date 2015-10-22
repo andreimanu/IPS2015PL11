@@ -23,8 +23,8 @@ namespace CentroDeportivo
             gn.generar();
 
 
-            /*PInicio inicio = new PInicio();
-            inicio.ShowDialog();*/
+            PInicio inicio = new PInicio();
+            inicio.ShowDialog();
 
 
             MainWeb mw = new MainWeb();

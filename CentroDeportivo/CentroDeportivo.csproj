@@ -73,6 +73,18 @@
       <DependentUpon>Control.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="PAviso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAviso.Designer.cs">
+      <DependentUpon>PAviso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PInicio.Designer.cs">
+      <DependentUpon>PInicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="InterfazWeb\MainWeb.cs" />
     <Compile Include="InterfazWeb\WebIniciado.cs">
       <SubType>Form</SubType>
@@ -100,6 +112,18 @@
     </Compile>
     <Compile Include="NuevoAlquiler.Designer.cs">
       <DependentUpon>NuevoAlquiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PNoDisponible.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PNoDisponible.Designer.cs">
+      <DependentUpon>PNoDisponible.cs</DependentUpon>
+    </Compile>
+    <Compile Include="POrganizador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="POrganizador.Designer.cs">
+      <DependentUpon>POrganizador.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Socio.cs" />
@@ -144,6 +168,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NuevoAlquiler.resx">
       <DependentUpon>NuevoAlquiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAviso.resx">
+      <DependentUpon>PAviso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PNoDisponible.resx">
+      <DependentUpon>PNoDisponible.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="POrganizador.resx">
+      <DependentUpon>POrganizador.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
