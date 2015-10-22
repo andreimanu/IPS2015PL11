@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -99,9 +99,12 @@ namespace CentroDeportivo
 
             for(int i = 0; i < 14; i++)
             {
+                if (instalacion != null) { 
                 alquileres[i] = (new Alquiler(new DateTime(2015, 10, monthCalendar1.SelectionRange.Start.Day), 0.58, 0, instalacion.IDInstalacion, 0, new DateTime(2015, 10, monthCalendar1.SelectionRange.Start.Day, hora1, 0, 0), new DateTime(2015, 10, monthCalendar1.SelectionRange.Start.Day, hora2, 0, 0), false));
                 hora1++;
                 hora2++;
+            }
+        
             }
             listBox1.Items.Clear();
             listBox1.Items.AddRange(alquileres);
@@ -110,45 +113,57 @@ namespace CentroDeportivo
         private void button_MouseClick(object sender, MouseEventArgs e)
         {
             var lista = listBox1.SelectedItems;
-            if (lista.Count <= 2 && lista.Count > 0)
+            if (lista != null)
             {
-                foreach(Alquiler i in lista)
-                 {
-                    if (i.tp == Alquiler.tipos.OCUPADO)
-                    {
-                        MessageBox.Show("No se puede alquilar. Ya está reservado por otro usuario");
-                    }
-                    else
-                    {
-                        i.IDSocio = 2;
-                        i.actualizar();
-                        db.Alquileres.Add(i);
-                        var result = MessageBox.Show("¿Quiere realizar el pago haciendo un cargo a su cuenta?", "",
-                                 MessageBoxButtons.YesNo,
-                                 MessageBoxIcon.Question);
-                        if(result == DialogResult.No)
-                        {
-                            i.mp = Alquiler.metodosPago.METALICO;
-                        }
-                        else
-                        {
-                            i.mp = Alquiler.metodosPago.TARJETA;
-                        }
-                        MessageBox.Show("la instalación ha sido alquilada satisfactoriamente");
-
-
-                    }
-                 }
-
-            }
-            else
-            {
-                if (lista.Count > 2)
+                if (lista.Count <= 2 && lista.Count > 0)
                 {
-                    MessageBox.Show("No se pueden alquilar más de dos horas seguidas. Lo sentimos.");
+                    foreach (Alquiler i in lista)
+                    {
+                        if (i != null)
+                        {
+                            if (i.tp == Alquiler.tipos.OCUPADO ||i.tp == Alquiler.tipos.NO_DISPONIBLE)
+                            {
+                                MessageBox.Show("No se puede alquilar. Ya está reservado por otro usuario");
+                            }
+                            else
+                            {
+                                i.IDSocio = 2;
+                                i.actualizar();
+                                db.Alquileres.Add(i);
+                                var result = MessageBox.Show("¿Quiere realizar el pago haciendo un cargo a su cuenta?", "",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+                                if (result == DialogResult.No)
+                                {
+                                    i.mp = Alquiler.metodosPago.METALICO;
+                                }
+                                else
+                                {
+                                    i.mp = Alquiler.metodosPago.TARJETA;
+                                }
+                                MessageBox.Show("la instalación ha sido alquilada satisfactoriamente");
+
+
+                            }
+                        }
+
+                    }
                 }
+
+                else
+                {
+                    if (lista.Count > 2)
+                    {
+                        MessageBox.Show("No se pueden alquilar más de dos horas seguidas. Lo sentimos.");
+                    }
+                }
+                if (lista.Count == 0)
+                {
+
+                }
+                else
+                    actualizarListaAlquileres((Instalacion)listBox2.SelectedItem);
             }
-            actualizarListaAlquileres((Instalacion)listBox2.SelectedItem);
         }
     }
 }
