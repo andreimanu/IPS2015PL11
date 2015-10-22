@@ -62,7 +62,7 @@
             // 
             // dtFechaInicio
             // 
-            this.dtFechaInicio.CustomFormat = "yyyy.MM.dd HH:mm";
+            this.dtFechaInicio.CustomFormat = "yyyy.MM.dd HH";
             this.dtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtFechaInicio.Location = new System.Drawing.Point(13, 166);
             this.dtFechaInicio.Name = "dtFechaInicio";
@@ -93,7 +93,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.CustomFormat = "yyyy.MM.dd HH:mm";
+            this.dateTimePicker1.CustomFormat = "yyyy.MM.dd HH";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(256, 166);
             this.dateTimePicker1.Name = "dateTimePicker1";

@@ -17,7 +17,7 @@ namespace CentroDeportivo
         DateTime fechaFin;
         Instalacion inst;
         Control cs;
-        public Alquiler.metodosPago mp;
+        public Alquiler.metodosPago mp = Alquiler.metodosPago.NONE;
         public NuevoAlquiler(Database db, Instalacion inst, Control cs)
         {
             this.db = db;
@@ -54,8 +54,23 @@ namespace CentroDeportivo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Alquiler al;
             Socio sc = lbSocio.SelectedItem as Socio;
+            if (mp == Alquiler.metodosPago.NONE)
+            {
+                MessageBox.Show("Por favor, elija el metodo de pago");
+                return;
+            }
+            else if (sc == null)
+            {
+                MessageBox.Show("Por favor, elija el socio");
+                return;
+            }
+            else if (fechaInicio.Equals(fechaFin) || fechaFin.CompareTo(fechaInicio) < 0)
+            {
+                MessageBox.Show("Por favor, compruebe las fechas");
+                return;
+            }
+            Alquiler al;
             DateTime fechaAlquiler = DateTime.Now;
             al = new Alquiler(fechaAlquiler, inst.Precio, sc.getID(), db.Alquileres.Count, mp, fechaInicio, fechaFin, false);
             db.Alquileres.Add(al);
