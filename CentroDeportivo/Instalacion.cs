@@ -26,7 +26,6 @@ namespace CentroDeportivo
         public void Reservar(Alquiler al)
         {
             Reservado.Add(al);
-            Disponible = false;
             al.InstalacionReservada = this;
         }
 
@@ -34,10 +33,9 @@ namespace CentroDeportivo
         {
             Reservado.Remove(al);
             al.InstalacionReservada = null;
-            Disponible = true;
         }
         public override string ToString() {
-            return "IDInstalacion:\t" + IDInstalacion + " \nPrecio:\t" + Precio + (Disponible ? " Disponible" : "Alquilado");
+            return "IDInstalacion: " + IDInstalacion + ". Precio: " + Precio + (Disponible ? ". Disponible" : " No disponible");
         }
     }
 }

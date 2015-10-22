@@ -21,9 +21,11 @@ namespace CentroDeportivo
         {
             gn = new Generador();
             gn.generar();
-            Control cs = new Control();
-            cs.ShowDialog();
-            cs.UpdateUsers();
+
+
+            PInicio inicio = new PInicio();
+            inicio.ShowDialog();
+
 
             MainWeb mw = new MainWeb();
             mw.InicioWeb();

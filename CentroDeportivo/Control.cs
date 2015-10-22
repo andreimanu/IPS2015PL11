@@ -13,14 +13,23 @@ namespace CentroDeportivo
     public partial class Control : Form
     {
         public Database db = new Database();
+        List<Alquiler> idAvisos;
+
         public Control()
         {
             InitializeComponent();
             db.Socios = MainClass.gn.Socios;
             db.Instalaciones = MainClass.gn.Instalaciones;
+            db.Alquileres = MainClass.gn.Alquileres;
             UpdateUsers();
             UpdateAlquileres();
             UpdateInstalaciones();
+            idAvisos = new List<Alquiler>();
+            if (comprobarAviso())
+            {
+                PAviso pAviso = new PAviso(idAvisos);
+                pAviso.ShowDialog();
+            }
         }
 
         public bool SignUp(Socio soc) {
@@ -126,8 +135,21 @@ namespace CentroDeportivo
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            NuevoAlquiler na = new NuevoAlquiler(db, listBox3.SelectedItem as Instalacion, this);
-            na.ShowDialog();
+            Instalacion ins = listBox3.SelectedItem as Instalacion;
+            if(ins != null)
+            {
+                if (ins.Disponible)
+                {
+                    NuevoAlquiler na = new NuevoAlquiler(db, listBox3.SelectedItem as Instalacion, this);
+                    na.ShowDialog();
+                }
+                else
+                {
+                    PNoDisponible nd = new PNoDisponible();
+                    nd.ShowDialog();
+                }
+            }
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -136,6 +158,27 @@ namespace CentroDeportivo
             db.Alquileres.Remove(al);
             al.InstalacionReservada.Liberar(al);
             RefreshAlquileres();
+        }
+        private bool comprobarAviso()
+        {
+            bool retorno = false;
+            foreach (Instalacion i in db.Instalaciones)
+            {
+                foreach (Alquiler a in i.Reservado)
+                    if (i != null)
+                    {
+                        {
+                        if (a.tp == Alquiler.tipos.OCUPADO)
+                        {
+                            idAvisos.Add(a);
+                            retorno = true;
+                        }
+                    }
+                }
+                
+            }
+            
+            return retorno;
         }
     }
 }

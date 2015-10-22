@@ -30,7 +30,7 @@ namespace CentroDeportivo
         }
 
         public override string ToString() {
-            return "Nombre:\t" + Nombre + "\nApellidos:\t" + Apellidos + "\nNumero Cuenta:\t" + NumeroCuenta + "\nImporte:\t" + Importe;
+            return "Nombre: " + Nombre + ". Apellidos: " + Apellidos + ". Numero Cuenta: " + NumeroCuenta + ". Importe: " + Importe;
         }
 
         public int getID()

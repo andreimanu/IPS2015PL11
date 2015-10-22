@@ -8,6 +8,8 @@ namespace CentroDeportivo
 {
     public class Database
     {
+        
+
         public Database()
         {
             Socios = new HashSet<Socio>();

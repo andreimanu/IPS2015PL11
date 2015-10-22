@@ -19,7 +19,7 @@ namespace CentroDeportivo
         public enum tipos{LIBRE = 0, NO_DISPONIBLE = 1, OCUPADO = 2 }
 
         public metodosPago mp;
-        public tipos tp;
+        public tipos tp { get; set; }
         public Instalacion InstalacionReservada;
        
 
@@ -55,7 +55,7 @@ namespace CentroDeportivo
 
         public override string ToString()
         {
-            return horaAlquiladaInicio.Hour  + ":"+ horaAlquiladaInicio.Minute + horaAlquiladaInicio.Second + " "+ "-" + horaAlquiladaFin.Hour + ":" + horaAlquiladaFin.Minute + horaAlquiladaFin.Second + " " + tp;
+            return horaAlquiladaInicio.Hour  + ":"+ horaAlquiladaInicio.Minute  + " "+ "-" + horaAlquiladaFin.Hour + ":" + horaAlquiladaFin.Minute + " " + tp;
         }
 
 
