@@ -65,7 +65,7 @@ namespace CentroDeportivo
                 MessageBox.Show("Por favor, elija el socio");
                 return;
             }
-            else if (fechaInicio.Equals(fechaFin))
+            else if (fechaInicio.Equals(fechaFin) || fechaFin.CompareTo(fechaInicio) < 0)
             {
                 MessageBox.Show("Por favor, compruebe las fechas");
                 return;
