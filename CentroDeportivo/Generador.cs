@@ -87,7 +87,7 @@ namespace CentroDeportivo
         {
             id++;
             double precio = rangen.NextDouble();
-            Instalaciones.Add(new Instalacion(this.Instalaciones.Count+1, precio));
+            Instalaciones.Add(new Instalacion(this.Instalaciones.Count+1, precio*100));
 
         }
     }
