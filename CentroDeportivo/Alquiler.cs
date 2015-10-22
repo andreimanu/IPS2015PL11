@@ -15,7 +15,7 @@ namespace CentroDeportivo
         internal DateTime horaAlquiladaInicio { get; set; }
         internal DateTime horaAlquiladaFin { get; set; }
         internal bool noDisponible { get; set; }
-        public enum metodosPago{METALICO = 0, TARJETA = 1, DOMICILIO = 2}
+        public enum metodosPago{NONE = -1, METALICO = 0, TARJETA = 1, DOMICILIO = 2}
         public enum tipos{LIBRE = 0, NO_DISPONIBLE = 1, OCUPADO = 2 }
 
         public metodosPago mp;
