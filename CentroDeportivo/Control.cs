@@ -27,8 +27,8 @@ namespace CentroDeportivo
             idAvisos = new List<Alquiler>();
             if (comprobarAviso())
             {
-                PAviso pAviso = new PAviso(idAvisos);
-                pAviso.ShowDialog();
+                //PAviso pAviso = new PAviso(idAvisos);
+                //pAviso.ShowDialog();
             }
         }
 
@@ -145,8 +145,8 @@ namespace CentroDeportivo
                 }
                 else
                 {
-                    PNoDisponible nd = new PNoDisponible();
-                    nd.ShowDialog();
+                    //PNoDisponible nd = new PNoDisponible();
+                   // nd.ShowDialog();
                 }
             }
             
